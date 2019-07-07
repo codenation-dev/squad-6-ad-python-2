@@ -9,7 +9,6 @@ Projeto Final da Aceleração Python para Web realizado pela Codenation
 - Instale as dependências.  
 `pip install -r requeriments.txt`  
 - Construa o banco de dados.  
-`cd codenation`  
 `python manager.py migrate`  
 - Carregue os dados de exemplo  
 `python manage.py loaddata televendas.json`  

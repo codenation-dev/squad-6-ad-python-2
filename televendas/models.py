@@ -14,7 +14,7 @@ class PlanoComissoes(models.Model):
         verbose_name_plural = "Planos de Comissões"
 
     def __str__(self):
-        return 'Plano {} - {}%'.format(self.valor_minimo, self.porcentagem_maior)
+        return self.descricao
 
 # Model para Vendedor    
 class Vendedor(models.Model):
@@ -29,7 +29,7 @@ class Vendedor(models.Model):
     data_nascimento = models.DateField("Data de Nascimento")
     email = models.EmailField(max_length=254)
     cpf = models.CharField("CPF", max_length=11)
-    plano_de_comissoes = models.ForeignKey(PlanoComissoes, on_delete=models.CASCADE, verbose_name="Plano de Comissôes")
+    plano_de_comissao = models.ForeignKey(PlanoComissoes, related_name='vendedores', on_delete=models.CASCADE, verbose_name="Plano de Comissãos")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -39,6 +39,12 @@ class Vendedor(models.Model):
         self.data_nascimento
         today = datetime.date.today()
         return today.year - self.data_nascimento.year - ((today.month, today.day) < (self.data_nascimento.month, self.data_nascimento.day))
+    
+    @property
+    def maior_comissao(self):
+        "retorna maior comissao."
+        venda = Venda.objects.filter(vendedor_id=self.id).order_by('-valor_comissao').first() 
+        return venda.valor_comissao
 
     def __str__(self):
         return self.nome
@@ -63,20 +69,22 @@ class Venda(models.Model):
         ('11', 'Novembro'),
         ('12', 'Dezembro'),
     )
-    vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
+    vendedor = models.ForeignKey(Vendedor, related_name='vendas', on_delete=models.CASCADE)
     mes = models.CharField("Mês", choices=MESES, max_length=2)
     ano = models.CharField("Ano", max_length=4)
     valor_vendas = models.DecimalField("Valor das Vendas", max_digits=8, decimal_places=2)
+    valor_comissao = models.DecimalField("Valor da Comissão", max_digits=8, decimal_places=2, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    @property
-    #Retorna o valor da Comissão
-    def valor_comissao(self):
-        plano_comissao = self.vendedor.plano_de_comissoes
+    #Salva o valor da Comissão
+    def save(self, *args, **kwargs):
+        plano_comissao = self.vendedor.plano_de_comissao
         if self.valor_vendas <= plano_comissao.valor_minimo:
-            return (plano_comissao.porcentagem_menor/100)*float(self.valor_vendas)
-        return (plano_comissao.porcentagem_maior/100)*float(self.valor_vendas)
+            self.valor_comissao = (plano_comissao.porcentagem_menor/100)*float(self.valor_vendas)
+        self.valor_comissao = (plano_comissao.porcentagem_maior/100)*float(self.valor_vendas)
+        super(Venda, self).save(*args, **kwargs)
+
         
     class Meta:
         ordering = ["created_at"]

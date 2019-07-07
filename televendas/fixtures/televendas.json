@@ -3,6 +3,7 @@
     "model": "televendas.planocomissoes",
     "pk": 1,
     "fields":  {
+            "descricao": "Plano 3%",
             "porcentagem_menor": 2,
             "valor_minimo": 1000.0,
             "porcentagem_maior": 3,
@@ -14,6 +15,7 @@
         "model": "televendas.planocomissoes",
         "pk": 2,
         "fields":  {
+                "descricao": "Plano 4%",
                 "porcentagem_menor": 2,
                 "valor_minimo": 2000.0,
                 "porcentagem_maior": 4,
@@ -21,6 +23,18 @@
                 "updated_at": "2019-07-03T22:55:57.707427Z"
             }
         },
+        {
+            "model": "televendas.planocomissoes",
+            "pk": 3,
+            "fields":  {
+                    "descricao": "Plano 5%",
+                    "porcentagem_menor": 2,
+                    "valor_minimo": 3000.0,
+                    "porcentagem_maior": 5,
+                    "created_at": "2019-07-03T19:50:07.288999Z",
+                    "updated_at": "2019-07-03T22:55:57.707427Z"
+                }
+            },
         {
             "model": "televendas.vendedor",
             "pk": 1,
@@ -36,12 +50,31 @@
                 "data_nascimento": "1991-01-01",
                 "email": "johndoe@gmail.com",
                 "cpf": "08863187153",
-                "plano_de_comissoes": "1",
+                "plano_de_comissao": "1",
                 "created_at": "2019-07-03T19:50:07.288999Z",
                 "updated_at": "2019-07-03T22:55:57.707427Z"
             }
         },
-
+        {
+            "model": "televendas.vendedor",
+            "pk": 2,
+            "fields":  {
+                "nome": "Henry Fort",
+                "cep": 41315180,
+                "logradouro": "Rua dos Maristas, 7, 7",
+                "numero_casa": "7",
+                "bairro": "dom avelar",
+                "cidade": "Salvador",
+                "estado": "BA",
+                "telefone": "7192680548",
+                "data_nascimento": "1991-01-01",
+                "email": "henry@gmail.com",
+                "cpf": "08863187153",
+                "plano_de_comissao": "1",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
         {
             "model": "televendas.venda",
             "pk": 1,
@@ -53,7 +86,114 @@
                 "created_at": "2019-07-03T19:50:07.288999Z",
                 "updated_at": "2019-07-03T22:55:57.707427Z"
             }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 2,
+            "fields":  {
+                "vendedor": "1",
+                "valor_vendas": 2000.0,
+                "mes": "2",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 3,
+            "fields":  {
+                "vendedor": "1",
+                "valor_vendas": 1500.0,
+                "mes": "3",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 4,
+            "fields":  {
+                "vendedor": "1",
+                "valor_vendas": 1800.0,
+                "mes": "4",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 5,
+            "fields":  {
+                "vendedor": "1",
+                "valor_vendas": 2000.0,
+                "mes": "5",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 1,
+            "fields":  {
+                "vendedor": "2",
+                "valor_vendas": 1000.0,
+                "mes": "1",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 2,
+            "fields":  {
+                "vendedor": "2",
+                "valor_vendas": 2000.0,
+                "mes": "2",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 3,
+            "fields":  {
+                "vendedor": "2",
+                "valor_vendas": 1500.0,
+                "mes": "3",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 4,
+            "fields":  {
+                "vendedor": "2",
+                "valor_vendas": 1800.0,
+                "mes": "4",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
+        },
+        {
+            "model": "televendas.venda",
+            "pk": 5,
+            "fields":  {
+                "vendedor": "2",
+                "valor_vendas": 2000.0,
+                "mes": "5",
+                "ano": "2019",
+                "created_at": "2019-07-03T19:50:07.288999Z",
+                "updated_at": "2019-07-03T22:55:57.707427Z"
+            }
         }
-        
         
     ]
