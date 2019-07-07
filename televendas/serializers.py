@@ -9,10 +9,18 @@ class PlanoComissoesSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('id', 'created_at', 'updated_at')
  
 class VendedorSerializer(serializers.HyperlinkedModelSerializer):
+   
     class Meta:
         model = Vendedor
-        fields = ('id', 'nome', 'cep', 'logradouro', 'numero_casa', 'bairro', 'cidade', 'estado', 'telefone', 'data_nascimento', 'email', 'cpf', 'plano_de_comissoes', 'created_at', 'updated_at')
+        fields = ('id','url', 'nome', 'cep', 'logradouro', 'numero_casa', 'bairro', 'cidade', 'estado', 'telefone', 'data_nascimento','idade', 'email', 'cpf', 'plano_de_comissoes', 'created_at', 'updated_at')
         read_only_fields = ('id', 'created_at', 'updated_at')
+    
+    #Não permite alterar o Plano de Comissão
+    def update(self, instance, validated_data):                                                     
+        if 'plano_de_comissoes' in validated_data:                                                              
+            del validated_data['plano_de_comissoes']                                                            
+        return super().update(instance, validated_data)
+      
  
 class VendaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

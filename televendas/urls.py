@@ -8,6 +8,6 @@ router.register(r'vendedores', VendedorViewSet)
 router.register(r'vendas', VendaViewSet)
 
 urlpatterns = [
-    path("", include(router.urls))
+    path('', include(router.urls))
 ]
 

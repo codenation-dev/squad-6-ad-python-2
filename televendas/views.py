@@ -14,3 +14,6 @@ class VendedorViewSet(viewsets.ModelViewSet):
 class VendaViewSet(viewsets.ModelViewSet):    
     queryset = Venda.objects.all()
     serializer_class = VendaSerializer
+
+class CalculateCommission():
+    pass
