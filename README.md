@@ -4,8 +4,8 @@ Projeto Final da Aceleração Python para Web realizado pela Codenation
 
 ### INSTALL  
 - Clone o repositório.  
-`git clone https://github.com/codenation-dev/squad-4-ad-python-2.git`  
-`cd squad-4-ad-python-2`  
+`git clone https://github.com/codenation-dev/squad-6-ad-python-2.git`  
+`cd squad-6-ad-python-2`  
 - Instale as dependências.  
 `pip install -r requeriments.txt`  
 - Construa o banco de dados.  
