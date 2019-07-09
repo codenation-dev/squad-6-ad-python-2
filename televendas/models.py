@@ -45,8 +45,11 @@ class Vendedor(models.Model):
     @property
     def maior_comissao(self):
         "retorna maior comissao."
-        venda = Venda.objects.filter(vendedor_id=self.id).order_by('-valor_comissao').first() 
-        return venda.valor_comissao
+        try:
+            venda = Venda.objects.filter(vendedor_id=self.id).order_by('-valor_comissao').first() 
+            return venda.valor_comissao
+        except Exception as e:
+            pass
 
     def __str__(self):
         return self.nome

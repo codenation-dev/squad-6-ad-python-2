@@ -30,5 +30,5 @@ class PlanoComissoesSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = PlanoComissoes
-        fields = ('id', 'url', 'porcentagem_menor', 'valor_minimo', 'porcentagem_maior', 'vendedores', 'created_at', 'updated_at')
+        fields = ('id', 'url', 'descricao', 'porcentagem_menor', 'valor_minimo', 'porcentagem_maior', 'vendedores', 'created_at', 'updated_at')
         read_only_fields = ('id', 'created_at', 'updated_at')
