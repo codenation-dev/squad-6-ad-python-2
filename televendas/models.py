@@ -83,7 +83,7 @@ class Venda(models.Model):
     def save(self, *args, **kwargs):
         #Calculando Comissao
         plano_comissao = self.vendedor.plano_de_comissao
-        if self.valor_vendas <= plano_comissao.valor_minimo:
+        if self.valor_vendas < plano_comissao.valor_minimo:
             self.valor_comissao = (plano_comissao.porcentagem_menor/100)*float(self.valor_vendas)
         self.valor_comissao = (plano_comissao.porcentagem_maior/100)*float(self.valor_vendas)
         super(Venda, self).save(*args, **kwargs)
