@@ -1,19 +1,19 @@
-from .models import PlanoComissoes, Venda, Vendedor
+from .models import ComissionPlan, Sale, Seller
 from rest_framework import serializers
 
-class VendaSerializer(serializers.ModelSerializer):
+class SaleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Venda
-        fields = ('id', 'url', 'vendedor', 'valor_vendas', 'valor_comissao', 'mes', 'ano', 'created_at', 'updated_at')
-        read_only_fields = ('id', 'valor_comissao', 'created_at', 'updated_at')
+        model = Sale
+        fields = ('__all__')
+        read_only_fields = ('id', 'comission', 'created_at', 'updated_at')
 
 
  
-class VendedorSerializer(serializers.ModelSerializer):
-    vendas = VendaSerializer(many=True, read_only=True)
+class SellerSerializer(serializers.ModelSerializer):
+    sales = SaleSerializer(many=True, read_only=True)
     class Meta:
-        model = Vendedor
-        fields = ('id','url', 'nome','maior_comissao' , 'cep', 'logradouro', 'numero_casa', 'bairro', 'cidade', 'estado', 'telefone', 'data_nascimento','idade', 'email', 'cpf', 'plano_de_comissao','vendas', 'created_at', 'updated_at')
+        model = Seller
+        fields = ('__all__')
         read_only_fields = ('id', 'created_at', 'updated_at')
     
     #Não permite alterar o Plano de Comissão
@@ -22,13 +22,8 @@ class VendedorSerializer(serializers.ModelSerializer):
             del validated_data['plano_de_comissoes']                                                            
         return super().update(instance, validated_data)
  
-class PlanoComissoesSerializer(serializers.ModelSerializer):
-    vendedores = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='vendedor-detail'
-    )
+class ComissionPlanSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PlanoComissoes
-        fields = ('id', 'url', 'descricao', 'porcentagem_menor', 'valor_minimo', 'porcentagem_maior', 'vendedores', 'created_at', 'updated_at')
+        model = ComissionPlan
+        fields = ('__all__')
         read_only_fields = ('id', 'created_at', 'updated_at')

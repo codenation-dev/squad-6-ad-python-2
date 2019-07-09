@@ -1,14 +1,14 @@
 from django.urls import include, path
 from rest_framework import routers
-from .views import PlanoComissoesViewSet, VendaViewSet, VendedorViewSet, VendedorList
+from .views import ComissionPlanViewSet, SellerViewSet, SaleViewSet, SellerList
 
 router = routers.DefaultRouter()
-router.register(r'planos-de-comissoes', PlanoComissoesViewSet)
-router.register(r'vendedores', VendedorViewSet)
-router.register(r'vendas', VendaViewSet)
+router.register(r'comissions', ComissionPlanViewSet)
+router.register(r'sellers', SellerViewSet)
+router.register(r'sales', SaleViewSet)
 
 urlpatterns = [
-    path('vendedores/mes/<int:mes>', VendedorList.as_view()),
+    path('seller/month/<int:month>', SellerList.as_view()),
     path('', include(router.urls))
 ]
 

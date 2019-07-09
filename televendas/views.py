@@ -1,28 +1,28 @@
 from rest_framework import viewsets
 from rest_framework import generics
-from televendas.serializers import PlanoComissoesSerializer, VendaSerializer, VendedorSerializer
-from .models import PlanoComissoes, Venda, Vendedor
+from televendas.serializers import ComissionPlanSerializer, SaleSerializer, SellerSerializer
+from .models import ComissionPlan, Sale, Seller
 from rest_framework.response import Response
 from django.db.models import Max
 
 
-class PlanoComissoesViewSet(viewsets.ModelViewSet):
-    queryset = PlanoComissoes.objects.all()
-    serializer_class = PlanoComissoesSerializer
+class ComissionPlanViewSet(viewsets.ModelViewSet):
+    queryset = ComissionPlan.objects.all()
+    serializer_class = ComissionPlanSerializer
 
-class VendedorViewSet(viewsets.ModelViewSet):
-    queryset = Vendedor.objects.all()
-    serializer_class = VendedorSerializer
+class SellerViewSet(viewsets.ModelViewSet):
+    queryset = Seller.objects.all()
+    serializer_class = SellerSerializer
 
-class VendedorList(generics.ListAPIView):    
-    serializer_class = VendedorSerializer
-    lookup_url_kwarg = "mes"
+class SellerList(generics.ListAPIView):    
+    serializer_class = SellerSerializer
+    lookup_url_kwarg = "month"
 
     def get_queryset(self):
-        mes = self.kwargs.get(self.lookup_url_kwarg)
-        vendedores = Vendedor.objects.filter(vendas__mes=mes).annotate(comissao=Max('vendas__valor_comissao')).order_by("-comissao")
-        return vendedores
+        month = self.kwargs.get(self.lookup_url_kwarg)
+        sellers = Seller.objects.filter(sales__month=month).annotate(comission=Max('sales__comission')).order_by("-comission")
+        return sellers
 
-class VendaViewSet(viewsets.ModelViewSet):    
-    queryset = Venda.objects.all()
-    serializer_class = VendaSerializer
+class SaleViewSet(viewsets.ModelViewSet):    
+    queryset = Sale.objects.all()
+    serializer_class = SaleSerializer
