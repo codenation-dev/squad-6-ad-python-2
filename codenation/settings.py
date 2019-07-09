@@ -125,3 +125,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'edfda5e8dd723c'
+EMAIL_HOST_PASSWORD = 'c03c17e513ff84'
+EMAIL_PORT = '2525'
