@@ -23,7 +23,7 @@ class Seller(models.Model):
     name = models.CharField("Name", max_length=200)
     address = models.TextField("Endereço")
     phone = models.PositiveIntegerField("Telefone")
-    idade = models.PositiveIntegerField("Idade")
+    age = models.PositiveIntegerField("Idade")
     email = models.EmailField(max_length=254)
     cpf = models.PositiveIntegerField("CPF")
     comission_plan = models.ForeignKey(ComissionPlan, related_name='sellers', on_delete=models.CASCADE, verbose_name="Plano de Comissãos")
