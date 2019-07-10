@@ -1,8 +1,8 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from ..models import ComissionPlan, Seller
-from .factories import ComissionPlanFactory
+from ..models import ComissionPlan, Seller, Sale
+from .factories import ComissionPlanFactory, SellerFactory
 
 class ComissionPlanViewTestCase(APITestCase):
     def test_create_ComissionPlan(self):
@@ -41,3 +41,21 @@ class SellerViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Seller.objects.count(), 1)
         self.assertEqual(Seller.objects.get().name, 'John Doe')
+
+class SaleViewTestCase(APITestCase):
+    def test_create_sale(self):
+        """
+        Ensure we can create a new Sale object.
+        """
+        url = reverse('sale-list')
+        #create a comission plan id 1
+        self.seller = SellerFactory()
+        sale_data = {
+            'seller': 1,
+            'month': 1,
+            'amount': 1000.0
+        }
+        response = self.client.post(url, sale_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Sale.objects.count(), 1)
+        self.assertEqual(Sale.objects.get().amount, 1000.0)

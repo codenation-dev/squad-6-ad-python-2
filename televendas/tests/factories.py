@@ -1,6 +1,6 @@
 import factory
 from faker import Faker
-from ..models import ComissionPlan, Seller
+from ..models import ComissionPlan, Seller, Sale
 import random
 
 fake = Faker('pt_BR')
@@ -29,3 +29,10 @@ class SellerFactory(factory.DjangoModelFactory):
     comission_plan = factory.SubFactory(ComissionPlanFactory)
     class Meta:
         model = Seller
+
+class SaleFactory(factory.DjangoModelFactory):
+    seller = factory.SubFactory(SellerFactory)
+    month = fake.pyint(min=1, max=12, step=1)
+    amount = fake.pydecimal(left_digits=None, right_digits=2, positive=True, min_value=1000, max_value=10000)
+    class Meta:
+        model = Sale
