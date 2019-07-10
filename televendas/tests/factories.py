@@ -12,7 +12,7 @@ def generate_cpf():
         cpf.append(11 - val if val > 1 else 0)                                                                                                                  
     return '%s%s%s%s%s%s%s%s%s%s%s' % tuple(cpf)
 
-class ComissionFactory(factory.DjangoModelFactory):
+class ComissionPlanFactory(factory.DjangoModelFactory):
     lower_percentage = fake.pyfloat(left_digits=3, right_digits=2, positive=True, min_value=0, max_value=5)
     min_value = fake.pydecimal(left_digits=None, right_digits=2, positive=True, min_value=1000, max_value=10000)
     upper_percentage = fake.pyfloat(left_digits=3, right_digits=2, positive=True, min_value=0, max_value=10)
@@ -20,13 +20,12 @@ class ComissionFactory(factory.DjangoModelFactory):
         model = ComissionPlan
 
 class SellerFactory(factory.DjangoModelFactory):
-    
     name = fake.name()
     address = fake.address()
     phone = fake.msisdn()
     age = fake.pyint(min=18, max=65, step=1)
     email = fake.email()
     cpf = generate_cpf()
-    comission_plan = factory.SubFactory(ComissionFactory)
+    comission_plan = factory.SubFactory(ComissionPlanFactory)
     class Meta:
         model = Seller

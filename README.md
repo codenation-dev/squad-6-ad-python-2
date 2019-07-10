@@ -15,6 +15,10 @@ Projeto Final da Aceleração Python para Web realizado pela Codenation
 - rode o servidor.  
 `python manage.py runserver`  
 
+### Test  
+`python manage.py test`  
+
+
 Recomendável criar um ambiente virtual para desenvolvimento.  
 `python3 -m venv venv`  
 `source venv/bin/activate`    
