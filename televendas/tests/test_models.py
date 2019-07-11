@@ -27,7 +27,7 @@ class SellerTestCase(TestCase):
     def test_model_can_calc_age_seller(self):
         """Test the seller model can calc age of seller."""
         def age():
-            birthday = datetime.datetime.strptime(str(self.birthday), '%Y-%m-%d')
+            birthday = datetime.datetime.strptime(str(self.seller.birthday), '%Y-%m-%d')
             today = datetime.date.today()
             return today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
         
