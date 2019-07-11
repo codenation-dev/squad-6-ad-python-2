@@ -23,7 +23,7 @@ class SellerFactory(factory.DjangoModelFactory):
     name = fake.name()
     address = fake.address()
     phone = fake.msisdn()
-    age = fake.pyint(min=18, max=65, step=1)
+    birthday = fake.date()
     email = fake.email()
     cpf = generate_cpf()
     comission_plan = factory.SubFactory(ComissionPlanFactory)

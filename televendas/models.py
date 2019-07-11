@@ -1,5 +1,5 @@
-from django.db import models
 import datetime
+from django.db import models
 from django.core.mail import send_mail
 
 # Model Plano de Comissão
@@ -23,13 +23,19 @@ class Seller(models.Model):
     name = models.CharField("Name", max_length=200)
     address = models.TextField("Endereço")
     phone = models.PositiveIntegerField("Telefone")
-    age = models.PositiveIntegerField("Idade")
+    birthday = models.DateField("Data de Nascimento")
     email = models.EmailField(max_length=254)
     cpf = models.PositiveIntegerField("CPF")
     comission_plan = models.ForeignKey(ComissionPlan, related_name='sellers', on_delete=models.CASCADE, verbose_name="Plano de Comissãos")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
    
+    @property
+    def age(self):
+        "Retorna a idade do vendedor."
+        birthday = datetime.datetime.strptime(str(self.birthday), '%Y-%m-%d')
+        today = datetime.date.today()
+        return today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
 
     def __str__(self):
         return self.name

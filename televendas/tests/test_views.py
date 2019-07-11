@@ -32,7 +32,7 @@ class SellerViewTestCase(APITestCase):
             'name': 'John Doe', 
             'address': 'Rua dos Maristas, 7, 7', 
             'phone': 7192680548, 
-            'age': 29, 
+            'birthday': '1992-10-24', 
             'email': 'johndoe@gmail.com',
             'cpf': 1241241241,
             'comission_plan': 1

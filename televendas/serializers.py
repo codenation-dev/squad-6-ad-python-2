@@ -10,10 +10,22 @@ class SaleSerializer(serializers.ModelSerializer):
 
  
 class SellerSerializer(serializers.ModelSerializer):
-    sales = SaleSerializer(many=True, read_only=True)
     class Meta:
         model = Seller
-        fields = ('__all__')
+        fields = (
+            'id',
+            'url',
+            'name',
+            'address',
+            'phone',
+            'birthday',
+            'age',
+            'email',
+            'cpf',
+            'comission_plan',
+            'created_at', 
+            'updated_at'
+        )
         read_only_fields = ('id', 'created_at', 'updated_at')
     
     #Não permite alterar o Plano de Comissão
