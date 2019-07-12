@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ComissionsConfig(AppConfig):
+class TelevendasConfig(AppConfig):
     name = 'televendas'
