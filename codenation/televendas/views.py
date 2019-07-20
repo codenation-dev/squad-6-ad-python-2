@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import status, viewsets
+from televendas.serializers import ComissionPlanSerializer
+from .models import ComissionPlan
 
-# Create your views here.
+class ComissionPlanViewSet(viewsets.ModelViewSet):
+    queryset = ComissionPlan.objects.all()
+    serializer_class = ComissionPlanSerializer
+
