@@ -1,4 +1,5 @@
 from .models import ComissionPlan
+from rest_framework import serializers
 
 class ComissionPlanSerializer(serializers.ModelSerializer):
     class Meta:
