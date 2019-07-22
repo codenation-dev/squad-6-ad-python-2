@@ -11,7 +11,12 @@ class Seller(models.Model):
     phone_number = models.CharField(max_length=15)
     age = models.CharField(max_length=3)
     cpf = models.CharField(max_length=11, primary_key=True)
-    comission_plan = models.CharField(max_length=2)
+    comission_plan = models.ForeignKey(
+                                        ComissionPlan,
+                                        related_name='sellers',
+                                        on_delete=models.CASCADE,
+                                        verbose_name="Plano de Comissões"
+                                        )
 
     # TODO: verificar possibilidade de validacao programatica do formato
     # deste email
