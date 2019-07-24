@@ -1,6 +1,6 @@
 import datetime
 from django.test import TestCase
-from ..models import ComissionPlan
+from televendas.models.comission_plan import ComissionPlan
 from .factories import ComissionPlanFactory
 
 class ComissionPlanTestCase(TestCase):

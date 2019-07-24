@@ -15,7 +15,6 @@ class Migration(migrations.Migration):
             name='ComissionPlan',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(max_length=200, verbose_name='Descrição')),
                 ('lower_percentage', models.FloatField(verbose_name='Menor Porcentagem')),
                 ('min_value', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Valor Mínimo')),
                 ('upper_percentage', models.FloatField(verbose_name='Maior Porcentagem')),

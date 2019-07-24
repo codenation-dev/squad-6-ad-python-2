@@ -1,6 +1,6 @@
 # django-televendas
 Projeto Final da Aceleração Python para Web realizado pela Codenation  
-[Descrição do Projeto](README_CODENATION.md)  
+[Descrição do Projeto](description.md)  
 
 ### INSTALL  
 - Clone o repositório.  
