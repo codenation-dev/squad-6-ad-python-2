@@ -1,6 +1,6 @@
 import factory
 from faker import Faker
-from ..models import ComissionPlan
+from televendas.models.comission_plan import ComissionPlan
 
 fake = Faker('pt_BR')
 
