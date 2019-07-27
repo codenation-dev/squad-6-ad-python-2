@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from televendas.models.comission_plan import ComissionPlan
 
 class Seller(models.Model):
     name = models.CharField(max_length=50)

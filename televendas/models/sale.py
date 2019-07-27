@@ -1,4 +1,6 @@
 from django.db import models
+from televendas.models.seller import Seller
+from televendas.models.comission_plan import ComissionPlan
 
 class Sale(models.Model):   
     months=(
@@ -19,7 +21,14 @@ class Sale(models.Model):
     amount =  models.DecimalField(max_digits=8, decimal_places=2) #aqui fui deacordo com o modelo ComissionPlan com o número de digitos, e exibição dos decimais
     month = models.CharField( choices=months , max_length=1)
     comission = models.DecimalField( max_digits=8, decimal_places=2) 
-        
+    
+    def save(self, *args, **kwargs):
+        comission_plan = self.seller.comission_plan
+        if self.amount < comission_plan.min_value:
+            self.comission = (comission_plan.lower_percentage/100)*float(self.amount)
+        self.comission = (comission_plan.upper_percentage/100)*float(self.amount)
+        super(Sale, self).save(*args, **kwargs)
+
     class Meta:
         db_table = 'sale'
 
