@@ -1,9 +1,5 @@
 from django.db import models
 from televendas.models.seller import Seller
-<<<<<<< d892418cec7b6f59bd59f553ad1349afa9c642ca
-=======
-from televendas.models.comission_plan import ComissionPlan
->>>>>>> Criacao de end point de vendas
 
 
 class Sale(models.Model):
