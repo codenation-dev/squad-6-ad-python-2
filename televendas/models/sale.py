@@ -23,7 +23,14 @@ class Sale(models.Model):
     seller = models.ForeignKey(Seller , on_delete=models.CASCADE, verbose_name="CPF")
     amount =  models.DecimalField(max_digits=8, decimal_places=2)
     month = models.CharField( choices=months , max_length=1)
-    comission = models.DecimalField( max_digits=8, decimal_places=2)
-        
+    comission = models.DecimalField( max_digits=8, decimal_places=2) 
+    
+    def save(self, *args, **kwargs):
+        comission_plan = self.seller.comission_plan
+        if self.amount < comission_plan.min_value:
+            self.comission = (comission_plan.lower_percentage/100)*float(self.amount)
+        self.comission = (comission_plan.upper_percentage/100)*float(self.amount)
+        super(Sale, self).save(*args, **kwargs)
+
     class Meta:
         db_table = 'sale'
