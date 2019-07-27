@@ -1,4 +1,4 @@
-from .models import Sale
+from televendas.models.sale import Sale
 from rest_framework import serializers
 
 
