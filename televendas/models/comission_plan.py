@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ComissionPlan(models.Model):
     """
     Model for Comission Plan
@@ -16,3 +17,4 @@ class ComissionPlan(models.Model):
 
     def __str__(self):
         return 'Plano {} - {}%'.format(self.min_value, self.upper_percentage)
+        

@@ -9,6 +9,6 @@ router.register(r'comissions', ComissionPlanViewSet)
 
 urlpatterns = [
     path('', include_docs_urls(title='Televendas API')),
-    path('/api/v1/', include(router.urls))
+    path('api/v1/', include(router.urls))
 
 ]
