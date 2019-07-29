@@ -28,7 +28,7 @@ class SellerViewSet(viewsets.ModelViewSet):
         sellers = Seller.objects.filter(
             sales__month=month).annotate(
                 comission=Max('sales__comission')).values(
-                    'name', 'cpf', 'email', 'phone_number', 'comission').order_by(
+                    'id', 'name', 'cpf', 'email', 'phone_number', 'comission').order_by(
                         "-comission")
         page = self.paginate_queryset(sellers)
         if page is not None:
