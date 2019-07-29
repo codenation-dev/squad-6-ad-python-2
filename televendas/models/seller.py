@@ -7,16 +7,18 @@ class Seller(models.Model):
     """
     Model for Sellers
     """
-    name = models.CharField(max_length=50)
-    address = models.TextField("Endereço", help_text="Address of Seller")
-    phone_number = models.CharField(max_length=15)
+    name = models.CharField("Nome", max_length=50, help_text="Nome completo do Vendedor")
+    address = models.TextField(
+        "Endereço", help_text="Endereço completo do Vendedor")
+    phone_number = models.CharField(
+        "Telefone", max_length=15, help_text="Número de telefone do Vendedor")
     birthday = models.DateField(
-        "Data de Nascimento", help_text="Birthday of Seller")
-    cpf = models.CharField(max_length=11, primary_key=True)
+        "Data de Nascimento", help_text="Data de Nascimento do Vendedor")
+    cpf = models.CharField("CPF", max_length=11, help_text="CPF do Vendedor")
     comission_plan = models.ForeignKey(
         ComissionPlan, related_name='sellers', on_delete=models.CASCADE,
         verbose_name="Plano de Comissões")
-    email = models.EmailField(max_length=254, help_text="Email of Seller")
+    email = models.EmailField(max_length=254, help_text="Endereço de email do Vendedor")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

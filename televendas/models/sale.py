@@ -22,7 +22,7 @@ class Sale(models.Model):
     )
     seller = models.ForeignKey(
         Seller , related_name='sales',
-            on_delete=models.CASCADE, verbose_name="CPF")
+            on_delete=models.CASCADE, verbose_name="Vendedor")
     amount =  models.DecimalField(max_digits=8, decimal_places=2)
     month = models.CharField( choices=months , max_length=1)
     comission = models.DecimalField( max_digits=8, decimal_places=2) 

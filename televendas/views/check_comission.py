@@ -15,7 +15,9 @@ class CheckComission(APIView):
         serializer = CheckComissionSerializer(data=request.data)
         if serializer.is_valid():
             seller = get_object_or_404(Seller, pk=request.data['seller'])
-            sales = Sale.objects.filter(seller_id=seller.pk).values_list('amount', flat=True).order_by('-month')[:5]
+            sales = Sale.objects.filter(
+                seller_id=seller.pk).values_list(
+                    'amount', flat=True).order_by('-month')[:5]
             if len(sales) > 0:            
                 sum = 0.0
                 notify = False
@@ -24,7 +26,8 @@ class CheckComission(APIView):
                 avg = sum/len(sales)
                 minimum_amount = avg - (avg * 10 / 100)
                 if minimum_amount > request.data['amount']:
-                    notify = True                            
+                    notify = True    
+                    # Chamar aqui, a função que envia o email aqui                        
                 else:
                     notify = False
                 return Response({'notify': notify}, status=status.HTTP_200_OK)
