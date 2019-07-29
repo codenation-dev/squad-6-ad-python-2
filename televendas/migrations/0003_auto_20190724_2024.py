@@ -17,17 +17,24 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='comissionplan',
             name='lower_percentage',
-            field=models.FloatField(help_text='The lower comission percentage', verbose_name='Menor Porcentagem'),
+            field=models.FloatField(
+                help_text='The lower comission percentage',
+                verbose_name='Menor Porcentagem'),
         ),
         migrations.AlterField(
             model_name='comissionplan',
             name='min_value',
-            field=models.DecimalField(decimal_places=2, help_text='The minimum amount to receive bigger comission', max_digits=8, verbose_name='Valor Mínimo'),
+            field=models.DecimalField(
+                decimal_places=2,
+                help_text='The minimum amount to receive bigger comission',
+                max_digits=8, verbose_name='Valor Mínimo'),
         ),
         migrations.AlterField(
             model_name='comissionplan',
             name='upper_percentage',
-            field=models.FloatField(help_text='The bigger comission percentage', verbose_name='Maior Porcentagem'),
+            field=models.FloatField(
+                help_text='The bigger comission percentage',
+                verbose_name='Maior Porcentagem'),
         ),
         migrations.DeleteModel(
             name='Sale',
