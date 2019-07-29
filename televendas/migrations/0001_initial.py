@@ -14,10 +14,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ComissionPlan',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('lower_percentage', models.FloatField(verbose_name='Menor Porcentagem')),
-                ('min_value', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Valor Mínimo')),
-                ('upper_percentage', models.FloatField(verbose_name='Maior Porcentagem')),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True,
+                    serialize=False, verbose_name='ID')),
+                ('lower_percentage', models.FloatField(
+                    verbose_name='Menor Porcentagem')),
+                ('min_value', models.DecimalField(
+                    decimal_places=2, max_digits=8,
+                    verbose_name='Valor Mínimo')),
+                ('upper_percentage', models.FloatField(
+                    verbose_name='Maior Porcentagem')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
