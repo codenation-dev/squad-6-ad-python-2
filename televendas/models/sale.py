@@ -1,6 +1,11 @@
 from django.db import models
+from televendas.models.seller import Seller
 
-class Sale(models.Model):   
+
+class Sale(models.Model):
+    """
+    Model for Sales
+    """  
     months=(
         ('1', 'janeiro'),
         ('2', 'fevereiro'),
@@ -15,12 +20,10 @@ class Sale(models.Model):
         ('11', 'novembro'),
         ('12', 'dezembro'),
     )
-    seller = models.ForeignKey(Seller , on_delete=models.CASCADE, verbose_name="CPF") 
-    amount =  models.DecimalField(max_digits=8, decimal_places=2) #aqui fui deacordo com o modelo ComissionPlan com o número de digitos, e exibição dos decimais
+    seller = models.ForeignKey(Seller , on_delete=models.CASCADE, verbose_name="CPF")
+    amount =  models.DecimalField(max_digits=8, decimal_places=2)
     month = models.CharField( choices=months , max_length=1)
-    comission = models.DecimalField( max_digits=8, decimal_places=2) 
+    comission = models.DecimalField( max_digits=8, decimal_places=2)
         
     class Meta:
         db_table = 'sale'
-
-     

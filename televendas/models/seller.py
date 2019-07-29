@@ -1,8 +1,13 @@
 from django.db import models
+from televendas.models.comission_plan import ComissionPlan
 import datetime
 
+
 class Seller(models.Model):
-    name = models.CharField(max_length=50)
+    """
+    Model for Sellers
+    """
+    name =  models.CharField(max_length=50)
     address = models.TextField("Endereço", help_text="Address of Seller")
     phone_number = models.CharField(max_length=15)
     birthday = models.DateField("Data de Nascimento", help_text="Birthday of Seller")
