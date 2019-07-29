@@ -1,10 +1,8 @@
-from rest_framework import generics
-from .models import Seller
-from .serializers import SellerSerializer
+from rest_framework import status, viewsets
+from televendas.serializers.seller import SellerSerializer
+from televendas.models.seller import Seller
 
 
-# Create your views here.
-class MusicSeller(generics.ListCreateAPIView):
-
+class SellerViewSet(viewsets.ModelViewSet):
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer

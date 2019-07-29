@@ -1,11 +1,12 @@
 from django.urls import include, path
 from rest_framework import routers
 from .views.comission_plan import ComissionPlanViewSet
+from .views.seller import SellerViewSet
 from rest_framework.documentation import include_docs_urls
-from .views import SellerList
 
 router = routers.DefaultRouter()
 router.register(r'comissions', ComissionPlanViewSet)
+router.register(r'sellers', SellerViewSet)
 
 urlpatterns = [
     path('', include_docs_urls(title='Televendas API')),
