@@ -1,4 +1,4 @@
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView 
 from rest_framework import status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -6,12 +6,13 @@ from televendas.models.sale import Sale
 from televendas.models.seller import Seller
 from televendas.serializers.check_comission import CheckComissionSerializer
 
-class CheckComission(APIView):
+class CheckComission(GenericAPIView):
+    serializer_class = CheckComissionSerializer
     """
     post:
     Check if amount sale is great than avarage of the last five months.
     """
-    def post(self, request, format=None):
+    def post(self, request, *args, **kwargs):
         serializer = CheckComissionSerializer(data=request.data)
         if serializer.is_valid():
             seller = get_object_or_404(Seller, pk=request.data['seller'])
@@ -27,7 +28,7 @@ class CheckComission(APIView):
                 minimum_amount = avg - (avg * 10 / 100)
                 if minimum_amount > request.data['amount']:
                     notify = True    
-                    # Chamar aqui, a função que envia o email aqui                        
+                    # Chamar aqui, a função que envia o email                       
                 else:
                     notify = False
                 return Response({'notify': notify}, status=status.HTTP_200_OK)
