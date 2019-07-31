@@ -29,10 +29,12 @@ class Sale(models.Model):
     
     def save(self, *args, **kwargs):
         comission_plan = self.seller.comission_plan
-        if self.amount < comission_plan.min_value:
+        if float(self.amount) >= float(comission_plan.min_value):
+            self.comission = (comission_plan.upper_percentage/100)*float(self.amount)
+        else:
             self.comission = (comission_plan.lower_percentage/100)*float(self.amount)
-        self.comission = (comission_plan.upper_percentage/100)*float(self.amount)
+        
         super(Sale, self).save(*args, **kwargs)
 
     class Meta:
-        db_table = 'sale'
+        unique_together = ("seller", "month") 
