@@ -40,6 +40,7 @@ class Sale(models.Model):
 
     def save(self, *args, **kwargs):
         self.comission = self.get_comission
+        super(Sale, self).save(*args, **kwargs)
 
     class Meta:
-        db_table = 'sale'
+        unique_together = ("seller", "month")
