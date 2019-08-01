@@ -1,6 +1,7 @@
 from django.db import models
 from televendas.models.comission_plan import ComissionPlan
 import datetime
+from televendas.models.comission_plan import ComissionPlan
 
 
 class Seller(models.Model):
